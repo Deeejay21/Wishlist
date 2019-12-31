@@ -21,5 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/products', 'ProductController@index');
 Route::post('/products/{product}', 'ProductController@store');
+// Route::delete('/products/{product}', 'ProductController@destroy');
 
 Route::get('/account/{user}/wishlists', 'WishlistController@index');

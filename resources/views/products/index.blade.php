@@ -13,7 +13,7 @@
                 @foreach ($products as $product)
                 <ul>
                     <li>{{ $product->name }}</li>
-                    <li>{{ $product->description }} <wishlist-button product-id="{{ $product->id }}"></wishlist-button></li>
+                    <li>{{ $product->description }} <wishlist-button product-id="{{ $product->id }}" wishlist="{{ $wishlist }}"></wishlist-button></li>
                     
                 </ul>
                 @endforeach

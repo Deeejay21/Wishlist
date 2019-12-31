@@ -1878,15 +1878,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['productId'],
+  props: ['productId', 'wishlist'],
   mounted: function mounted() {
     console.log('Wishlist Button Component is ready.');
   },
   methods: {
     userWishlist: function userWishlist() {
+      var _this = this;
+
       axios.post('/products/' + this.productId).then(function (response) {
+        _this.wishlist = !_this.wishlist;
         console.log(response.data);
       });
+    }
+  },
+  computed: {
+    buttonText: function buttonText() {
+      return this.wishlist ? 'Remove to Wishlist' : 'Add to Wishlist';
     }
   }
 });
@@ -37333,11 +37341,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("span", [
-    _c(
-      "button",
-      { staticClass: "btn btn-outline-dark", on: { click: _vm.userWishlist } },
-      [_vm._v("Add to Wishlist")]
-    )
+    _c("button", {
+      staticClass: "btn btn-outline-dark",
+      domProps: { textContent: _vm._s(_vm.buttonText) },
+      on: { click: _vm.userWishlist }
+    })
   ])
 }
 var staticRenderFns = []

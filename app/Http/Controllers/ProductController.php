@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Product $product)
     {
         $products = Product::latest()->get();
+        $wishlist = (auth()->user()) ? auth()->user()->wishlists->contains($product->id) : false;
         
-        return view('products.index', compact('products'));
+        return view('products.index', compact('products', 'wishlist'));
     }
 
     public function store(Product $product)
